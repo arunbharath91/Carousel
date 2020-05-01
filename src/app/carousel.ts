@@ -5,15 +5,13 @@ interface IOptions {
   autoplay?: boolean;
   nav?: boolean;
   dots?: boolean;
-  gap?: number;
 }
 
 const defaultOptions: IOptions = {
   interval: 3000,
   autoplay: false,
   nav: true,
-  dots: true,
-  gap: 30
+  dots: true
 }
 
 export class Carousel {
