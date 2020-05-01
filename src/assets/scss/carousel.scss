@@ -1,0 +1,112 @@
+* {
+	box-sizing: border-box;
+}
+
+.carousel {
+	max-width: 100%;
+	margin: 10px auto;
+	position: relative;
+	overflow: hidden;
+}
+
+.carousel .carousel-container {
+	overflow: hidden;
+	transition: margin 1s ease;
+}
+
+.carousel div {
+	position: relative;
+	float: left;
+	width:100%;
+}
+
+.carousel-container div > img {
+	width: 100%;
+	display: block;
+}
+
+.carousel div > .caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(0,0,0,.6);
+	color: #ffffff;
+	font-size: 30px;
+	padding: 30px 15px;
+}
+
+slider-nav a {
+	position: absolute;
+	height: 40px;
+	width: 40px;
+	color: #ffffff;
+	background-color: #737373;
+	border-radius: 50%;
+	margin-top: -20px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 40px;
+	cursor: pointer;
+}
+
+slider-nav a:hover {
+	height: 42px;
+	line-height: 42px;
+	width: 42px;
+	-webkit-box-shadow: 0 1px 6px rgba(0,0,0,0.175);
+	box-shadow: 0 1px 6px rgba(0,0,0,0.175);
+}
+
+slider-nav .control_prev {
+	left: 20px;
+	top: 50%;
+}
+
+slider-nav .control_next {
+	right: 20px;
+	top: 50%;
+}
+
+.carousel ul.sliderCtrl {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+.carousel ul.sliderCtrl {
+	position: absolute;
+	bottom: 3%;
+	display: block;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.carousel ul.sliderCtrl li {
+	height: 15px;
+	width: 15px;
+	border: 1px solid #c3c3c3;
+	margin: 4px;
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 15px;
+}
+
+.carousel ul.sliderCtrl li.active {
+	background-color: #737373;
+	color: #ffffff;
+}
+
+@media only screen and (max-width: 640px) {
+	.carousel div > .caption {
+		font-size: 16px;
+		padding: 8px 7px;
+	}
+
+	.carousel ul.sliderCtrl {
+		bottom: 1%;
+	}
+}
