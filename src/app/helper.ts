@@ -18,7 +18,6 @@ class DomElement {
     if (typeof fncallback === 'function') fncallback();
     return this;
   };
-
   addClass(className: string) {
     const classList = className.split(' ');
     this.each((item: HTMLElement) => {
@@ -26,15 +25,6 @@ class DomElement {
     });
     return this;
   }
-
-  trigger(event: any) {
-    this.each((item: HTMLElement) => {
-      setTimeout(() => {
-        item.dispatchEvent(new Event(event));
-      })
-    });
-  }
-
   removeClass(className: string) {
     const classList = className.split(' ');
     this.each((item: HTMLElement) => {
@@ -42,45 +32,6 @@ class DomElement {
     });
     return this;
   };
-
-  on(event: any, callback: (this: HTMLElement, ev: any) => any) {
-    this.each((item: HTMLElement) => {
-      item.addEventListener(event, callback);
-    });
-    return this;
-  }
-
-  find(selector: any) {
-    this.each((item: HTMLElement) => {
-      this.elements = item.querySelectorAll(selector);
-    });
-    return this;
-  }
-
-  attr(key: string, val?: string) {
-    let ttVal;
-    this.each((item: HTMLElement) => {
-      (!val) ? ttVal = item.getAttribute(key) : ttVal = item.setAttribute(key, val)
-    });
-    return ttVal;
-  }
-
-  html(node: any) {
-    this.each((item: HTMLElement) => {
-      item.innerHTML = node;
-    });
-    return this;
-  }
-
-  parent() {
-    const parentNode: ((Node & ParentNode) | null)[] = [];
-    this.each((item: HTMLElement) => {
-      parentNode.push(item.parentNode);
-    });
-    this.elements = parentNode;
-    return this;
-  }
-
   siblings() {
 
     let siblings: ChildNode[] = [];
@@ -94,32 +45,6 @@ class DomElement {
     this.elements = siblings;
     return this;
   }
-
-  after(elem: any) {
-    this.each((item: HTMLElement) => {
-      item.insertAdjacentHTML('afterend', elem)
-    });
-    return this;
-  }
-
-  remove() {
-    this.each((item: HTMLElement) => {
-      item.remove();
-    });
-    return this;
-  }
-
-  hasClass(className: string) {
-    let findedOne;
-    this.each((item: HTMLElement) => {
-      if(item.classList.contains(className)){
-        findedOne = item;
-      }
-    });
-    this.elements = [findedOne];
-    return this;
-  }
-
 }
 
 export const _s = (selector: any) => {
