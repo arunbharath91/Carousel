@@ -1,5 +1,5 @@
 # Carousel
- This Repository is for Carousel
+This Repository is for Carousel
 
 **Carousel is added **Supports most of the screen sizes including tablets and mobiles. **licenced under the category of open-source free licence crendentials. **The information like company name or anything provided in this plugin is only an fake one.
 
