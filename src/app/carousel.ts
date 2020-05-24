@@ -56,10 +56,10 @@ export class Carousel {
       this.totalItems++;
     });
     this.carouselContainer.style.width = `${totalItemsWidth}px`;
-    this.projectControls();
+    this.insertControls();
   }
 
-  projectControls() {
+  private insertControls() {
     if (this.options.nav) this.generateNav();
     if (this.options.dots) this.generateLi();
     if (this.options.autoplay) {
@@ -74,7 +74,7 @@ export class Carousel {
     }
   }
 
-  autoplay() {
+  private autoplay() {
     if (this.play.length > 0) {
       this.destroyPlay(this.play);
       this.play.pop();
@@ -84,13 +84,13 @@ export class Carousel {
     }, this.options.interval));
   }
 
-  destroyPlay(play: any) {
+  private destroyPlay(play: any) {
     play.forEach((p: any) => {
       clearInterval(p);
     });
   }
 
-  generateNav() {
+  private generateNav() {
     const presence = document.querySelector("slider-nav.sliderNav");
     if (presence) {
       presence.remove();
@@ -106,7 +106,7 @@ export class Carousel {
   }
 
   // next slide method
-  next() {
+  private next() {
     if (this.index == this.totalItems - 1) {
       this.index = 0;
       this.jumpSlideWidth = 0;
@@ -115,12 +115,12 @@ export class Carousel {
       this.index++;
       this.jumpSlideWidth = this.jumpSlideWidth + this.containerWidth;
     }
-    this.activatePagination(`ul.sliderCtrl li:nth-child(${this.index + 1})`);
+    this.activateCurrentPagination(`ul.sliderCtrl li:nth-child(${this.index + 1})`);
     this.carouselContainer.style.marginLeft = - this.jumpSlideWidth + "px"
   }
 
   // prev slide method
-  prev() {
+  private prev() {
     if (this.index == 0) {
       this.index = this.totalItems - 1;
       this.jumpSlideWidth = this.containerWidth * (this.totalItems - 1);
@@ -129,12 +129,8 @@ export class Carousel {
       this.index--;
       this.jumpSlideWidth = this.jumpSlideWidth - this.containerWidth;
     }
-    this.activatePagination(`ul.sliderCtrl li:nth-child(${this.index + 1})`);
+    this.activateCurrentPagination(`ul.sliderCtrl li:nth-child(${this.index + 1})`);
     this.carouselContainer.style.marginLeft = - this.jumpSlideWidth + "px"
-  }
-
-  activatePagination(target: any) {
-    _s(target).addClass('active').siblings().removeClass('active');
   }
 
   protected generateLi() {
@@ -148,7 +144,7 @@ export class Carousel {
       const li = document.createElement("li");
       li.id = i.toString();
       li.addEventListener("click", (e) => {
-        this.activatePagination(e.target);
+        this.activateCurrentPagination(e.target);
         this.controlSlides(+(e.target as HTMLElement).id - 1);
       });
       this.sliderPagination.appendChild(li);
@@ -157,6 +153,10 @@ export class Carousel {
       }
     }
     this.selector.appendChild(this.sliderPagination);
+  }
+
+  private activateCurrentPagination(target: any) {
+    _s(target).addClass('active').siblings().removeClass('active');
   }
 
   protected controlSlides(num: number) {
